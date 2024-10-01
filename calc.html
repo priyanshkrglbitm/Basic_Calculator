@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="calc.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+</head>
+<body>
+    <div id="calculator">
+        <input type="text" id="display" readonly>
+        <div class="button-container">
+            <button class="button" onclick="clearDisplay()">AC</button>
+            <button class="button" onclick="toggleParenthesis()">( )</button>
+            <button class="button" onclick="appendToDisplay('%')">%</button>
+            <button class="button" onclick="appendToDisplay('/')">/</button>
+        </div>
+        <div class="button-container">
+            <button class="button" onclick="appendToDisplay(7)">7</button>
+            <button class="button" onclick="appendToDisplay(8)">8</button>
+            <button class="button" onclick="appendToDisplay(9)">9</button>
+            <button class="button" onclick="appendToDisplay('*')">X</button>
+        </div>
+        <div class="button-container">
+            <button class="button" onclick="appendToDisplay(4)">4</button>
+            <button class="button" onclick="appendToDisplay(5)">5</button>
+            <button class="button" onclick="appendToDisplay(6)">6</button>
+            <button class="button" onclick="appendToDisplay('-')">-</button>
+        </div>
+        <div class="button-container">
+            <button class="button" onclick="appendToDisplay(1)">1</button>
+            <button class="button" onclick="appendToDisplay(2)">2</button>
+            <button class="button" onclick="appendToDisplay(3)">3</button>
+            <button class="button" onclick="appendToDisplay('+')">+</button>
+        </div>
+        <div class="button-container">
+            <button class="button" onclick="appendToDisplay(0)">0</button>
+            <button class="button" onclick="appendToDisplay('.')">.</button>
+            <button class="button" onclick="clearLast()">Clr</button>
+            <button class="button" onclick="calculateResult()">=</button>
+        </div>
+    </div>
+    <script>
+            function clearDisplay() {
+            const display = document.getElementById("display");
+            display.value = ""; // Clear the entire display
+        }
+
+        function clearLast() {
+            const display = document.getElementById("display");
+            display.value = display.value.slice(0, -1); // Remove the last character
+        }
+
+        function appendToDisplay(value) {
+            const display = document.getElementById("display");
+            display.value += value;
+        }
+
+        function toggleParenthesis() {
+            const display = document.getElementById("display");
+            const lastChar = display.value.slice(-1);
+
+            const operators = ['+', '-', '*', '/', '%', '(', ''];
+            if (operators.includes(lastChar)) {
+                display.value += '('; 
+            } else {
+                display.value += ')'; 
+            }
+        }
+
+        function calculateResult() {
+            const display = document.getElementById("display");
+            try {
+                const result = evaluateExpression(display.value);
+                display.value = result;
+            } catch (error) {
+                display.value = "Error";
+            }
+        }
+        function evaluateExpression(expr) {
+            expr = expr.replace(/\s+/g, '').replace(/X/g, '*');
+
+            if (expr.includes('%')) {
+                expr = expr.replace(/(\d+(?:\.\d+)?)%/g, "($1 / 100)"); 
+            }
+
+
+            return new Function(`'use strict'; return (${expr})`)();
+        }
+
+    </script>
+</body>
+</html>

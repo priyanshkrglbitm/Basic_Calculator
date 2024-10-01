@@ -1,0 +1,74 @@
+body {
+    background-color: #f4f4f4; /* Light background for contrast */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full height of the viewport */
+    font-family: 'Arial', sans-serif; /* A clean font */
+}
+
+#calculator {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    width: 250px;
+    padding: 20px;
+    background-color: #ffffff; /* White background for the calculator */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+#display {
+    margin: 10px 0;
+    width: 100%;
+    height: 50px;
+    font-size: 28px; /* Increased font size */
+    text-align: right;
+    box-sizing: border-box;
+    border: 1px solid #ccc; /* Border around the display */
+    border-radius: 5px;
+    padding: 10px; /* Padding inside the display */
+    background-color: #f9f9f9; /* Light grey background */
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between; /* Space between buttons */
+    margin-bottom: 10px;
+}
+
+.button {
+    flex: 1;
+    margin: 0 5px;
+    height: 50px; /* Increased height for larger buttons */
+    font-size: 20px; /* Increased font size */
+    background-color: #007bff; /* Primary button color */
+    color: white; /* Text color */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s; /* Smooth color transition */
+    cursor: pointer; /* Pointer cursor on hover */
+}
+
+.button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+
+.button:active {
+    background-color: #004085; /* Even darker shade when active */
+}
+
+.button:focus {
+    outline: none; /* Remove focus outline */
+}
+
+/* Specific styles for special buttons */
+.button:nth-child(2) { /* Parenthesis button */
+    background-color: #28a745; /* Green color */
+}
+
+.button:nth-child(3) { /* Percent button */
+    background-color: #ffc107; /* Yellow color */
+}
+
+.button:nth-child(4) { /* Division button */
+    background-color: #dc3545; /* Red color */
+}
